@@ -1,0 +1,38 @@
+"3. Count the number of words in a text file and store them in a dictionary data structure"
+
+"""
+    This function read file, count number of words with link provided.
+    Input: file txt
+    Output: dictionary.
+"""
+
+import gdown
+
+url = 'https://drive.google.com/uc?id=1IBScGdW2xlNsc9v5zSAya548kNgiOrko'
+output = 'P1_data.txt'
+gdown.download(url, output, quiet=False)
+
+def word_count(file_path):
+    word_statistic = {}
+    with open(file_path, 'r') as file:
+        for line in file:
+            # Normalize the text to lowercase
+            line = line.lower()
+            # Tokenize the line into words
+            words = line.split()
+            # Count each word
+            for word in words:
+                if word in word_statistic:
+                    word_statistic[word] += 1
+                else:
+                    word_statistic[word] = 1
+    return word_statistic
+
+# Test case
+assert result['a'] == 7, f"Expected 7 but got {result['a']}"
+assert result['he'] == 1, f"Expected 1 but got {result['he']}"
+
+# Print result
+file_path = 'P1_data.txt'
+result = word_count(file_path)
+print(result)
